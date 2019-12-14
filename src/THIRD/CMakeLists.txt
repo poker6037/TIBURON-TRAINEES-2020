@@ -208,17 +208,6 @@ include_directories(
 # catkin_add_nosetests(test)
 
 
-add_executable(NODE_1 src/NODE1.cpp)
-target_link_libraries(NODE_1 ${catkin_LIBRARIES})
-add_dependencies(NODE_1 FIRST_generate_messages_cpp)
-
-add_executable(NODE_2 src/NODE2.cpp)
-target_link_libraries(NODE_2 ${catkin_LIBRARIES})
-add_dependencies(NODE_2 FIRST_generate_messages_cpp)
-
-add_executable(NODE_3 src/NODE3.cpp)
-target_link_libraries(NODE_3 ${catkin_LIBRARIES})
-add_dependencies(NODE_3 FIRST_generate_messages_cpp)
 
 add_executable(node_1 src/node1.cpp)
 target_link_libraries(node_1 ${catkin_LIBRARIES} ${OpenCV_LIBS})

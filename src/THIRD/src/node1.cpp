@@ -7,7 +7,6 @@
 int main(int argc, char** argv)
 {
   // Check if video source has been passed as a parameter
-  if(argv[1] == NULL) return 1;
 
   ros::init(argc, argv, "NODE_1");
   ros::NodeHandle nh;
@@ -15,18 +14,15 @@ int main(int argc, char** argv)
   image_transport::Publisher pub = it.advertise("cam", 1);
 
   // Convert the passed as command line parameter index for the video device to an integer
-  std::istringstream video_sourceCmd(argv[1]);
-  int video_source;
-  // Check if it is indeed a number
-  if(!(video_sourceCmd >> video_source)) return 1;
+  
 
-  cv::VideoCapture cap(video_source);
+  cv::VideoCapture cap(0);
   // Check if video device can be opened with the given index
   if(!cap.isOpened()) return 1;
   cv::Mat frame;
   sensor_msgs::ImagePtr msg;
 
-  ros::Rate loop_rate(5);
+  ros::Rate loop_rate(60);
   while (nh.ok()) {
     cap >> frame;
     // Check if grabbed frame is actually full with some content

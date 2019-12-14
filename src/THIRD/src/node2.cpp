@@ -6,13 +6,13 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
  image_transport::Publisher pub;
-char c;
+
 void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 {
   try
   { cv::Mat img=cv_bridge::toCvShare(msg, "bgr8")->image;
     cv::imshow("2nd node preview",img);
-    cv::waitKey(30);
+    int c=cv::waitKey(10);
     if(c == 'p')
     pub.publish(msg);
     else if(c =='s')
@@ -33,7 +33,6 @@ int main(int argc, char **argv)
   image_transport::ImageTransport it(nh);
   image_transport::Subscriber sub = it.subscribe("cam", 1, imageCallback);
   pub  = it.advertise("cam2", 1);    
-  std::cin>>c; 
 ros::spin();
   cv::destroyWindow("2nd node preview");
 }

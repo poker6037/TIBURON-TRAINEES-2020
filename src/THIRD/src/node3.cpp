@@ -9,7 +9,7 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
   try
   {
     cv::imshow("3rd node preview", cv_bridge::toCvShare(msg, "bgr8")->image);
-    cv::waitKey(30);
+    cv::waitKey(1);
   }
   catch (cv_bridge::Exception& e)
   {
